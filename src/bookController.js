@@ -1,13 +1,14 @@
 const { sendResponse, getISBNFromUrl, getRequestBody } = require("./utils")
 const bookService = require("./bookService")
 const Book = require("./bookModel")
+const logger = require("./logger")
 
 const getBooks = async (req, res) => {
     try {
         const books = await bookService.getBooks()
         sendResponse(res, 200, { "status": true, message: "get books", books })
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
@@ -33,7 +34,7 @@ const createBook = async (req, res) => {
         await bookService.createBook(newBook)
         sendResponse(res, 201, { "status": true, message: "Book created!", newBook })
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
@@ -49,7 +50,7 @@ const getBookByISBN = async (req, res) => {
 
         sendResponse(res, 200, { "status": true, message: "Book Details", book })
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
@@ -82,7 +83,7 @@ const updateBookByISBN = async (req, res) => {
         await bookService.updateBookByISBN(ISBN, bookUpdate)
         sendResponse(res, 200, { "status": true, message: "Book updated!" })
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
@@ -99,7 +100,7 @@ const deleteBookByISBN = async (req, res) => {
         await bookService.deleteBookByISBN(ISBN)
         sendResponse(res, 200, { "status": true, message: "Book deleted!" })
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
@@ -116,7 +117,7 @@ const searchBooks = async (req, res) => {
         const books = await bookService.searchBooks(searchTerm)
         sendResponse(res, 200, { "status": false, message: "Search Results", books})
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 

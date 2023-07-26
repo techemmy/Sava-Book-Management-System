@@ -3,6 +3,7 @@ require('dotenv').config(); // Load environment variables from .env file
 const server = require("./app");
 const config = require("./config");
 const redisStore = require("./redisStore");
+const logger = require("./logger")
 
 void (async () => {
     const redisClient = redisStore.getClient();
@@ -10,5 +11,5 @@ void (async () => {
 })();
 
 server.listen(config.server.PORT, () => {
-    console.info(`Server started at port ${config.server.PORT}`)
+    logger.info(`Server started at port ${config.server.PORT}`)
 })
