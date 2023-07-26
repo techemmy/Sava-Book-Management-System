@@ -54,8 +54,6 @@ const getBookByISBN = async (req, res) => {
     }
 }
 
-// TODO: updateBookByISBN and deleteBookByISBN routes/functionalities
-
 const updateBookByISBN = async (req, res) => {
     try {
         const ISBN = getISBNFromUrl(req.url)
