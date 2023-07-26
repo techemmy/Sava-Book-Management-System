@@ -1,4 +1,4 @@
-const { getBooks, getBookByISBN, createBook, updateBookByISBN, deleteBookByISBN } = require("./bookController");
+const { getBooks, getBookByISBN, createBook, updateBookByISBN, deleteBookByISBN, searchBooks } = require("./bookController");
 const { sendResponse } = require("./utils");
 
 module.exports = (req, res) => {
@@ -14,6 +14,9 @@ module.exports = (req, res) => {
     } else if (req.url === baseUrl && req.method === "POST") {
         // POST '/books' -> to create bboks
         createBook(req, res)
+    } else if (req.url.startsWith(`${baseUrl}/search`) && req.method === "GET") {
+        // GET '/books/search' -> to search for books by term (author or title)
+        searchBooks(req, res)
     } else if (bookPathWithISBNRegex.test(req.url) && req.method === "GET") {
         // GET '/books/:ISBN' -> to get book by the ISBN number
         getBookByISBN(req, res)
