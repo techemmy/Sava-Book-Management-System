@@ -66,7 +66,7 @@ const updateBookByISBN = async (req, res) => {
         }
 
         // update the book and make sure the ISBN cannot be manipulated
-        const bookUpdate = new Book({...oldBook, ...update, ISBN})
+        const bookUpdate = new Book({ ...oldBook, ...update, ISBN })
 
         // validate the updated book
         const validationError = await bookUpdate.validate()
@@ -104,10 +104,29 @@ const deleteBookByISBN = async (req, res) => {
     }
 }
 
+const searchBooks = async (req, res) => {
+    try {
+        const url = req.url.replaceAll("%27", "").replaceAll("%22", "")
+        const searchTermLocation = url.indexOf("=")
+        if (searchTermLocation === -1) {
+            return sendResponse(res, 400, { "status": false, message: "No search term detected was detected in the URL" })
+        }
+
+        const searchTerm = url.substring(searchTermLocation + 1, url.length)
+        const books = await bookService.searchBooks(searchTerm)
+        sendResponse(res, 200, { "status": false, message: "Search Results", books})
+    } catch (error) {
+        console.log(error)
+        sendResponse(res, 400, { "status": false, message: error.message })
+    }
+
+}
+
 module.exports = {
     getBooks,
     getBookByISBN,
     createBook,
     updateBookByISBN,
-    deleteBookByISBN
+    deleteBookByISBN,
+    searchBooks
 }
