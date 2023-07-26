@@ -31,7 +31,7 @@ const createBook = async (req, res) => {
         }
 
         await bookService.createBook(newBook)
-        sendResponse(res, 200, { "status": true, message: "Book created!", newBook })
+        sendResponse(res, 201, { "status": true, message: "Book created!", newBook })
     } catch (error) {
         console.log(error)
         sendResponse(res, 400, { "status": false, message: error.message })
@@ -103,7 +103,7 @@ const deleteBookByISBN = async (req, res) => {
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
-// TODO: work on consistency with the error messages in the catch of the try/catch
+
 module.exports = {
     getBooks,
     getBookByISBN,
