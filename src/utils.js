@@ -39,15 +39,15 @@ const getRequestBody = (req) => {
      * @returns {Promise} a promise that resolves to return the request body data
      */
     return new Promise((resolve, reject) => {
-        // the request body will only be an empty object '{}' if no body
-        // data is passed to prevent the error of parsing an empty string
-        let requestBody = '' || '{}';
+        let requestBody = '';
         req.on('data', chunk => {
             requestBody += chunk
         })
 
         req.on('end', () => {
-            const requestData = JSON.parse(requestBody);
+            // the request body will only be an empty object '{}' if the request body
+            // is an empty string to prevent error parsing an empty string
+            const requestData = JSON.parse(requestBody || '{}');
             return resolve(requestData)
         })
     })
