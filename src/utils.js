@@ -49,7 +49,7 @@ const getRequestBody = (req) => {
                 const requestData = JSON.parse(requestBody);
                 return resolve(requestData)
             } catch (error) {
-                reject("Invalid input. Make sure you data is properly formatted.")
+                reject(new Error("Invalid input. Make sure you data is properly formatted too."))
             }
         })
     })

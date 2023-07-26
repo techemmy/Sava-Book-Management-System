@@ -83,7 +83,7 @@ const updateBookByISBN = async (req, res) => {
         sendResponse(res, 200, { "status": true, message: "Book updated!" })
     } catch (error) {
         console.log(error)
-        sendResponse(res, 400, { "status": false, message: error })
+        sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
 
