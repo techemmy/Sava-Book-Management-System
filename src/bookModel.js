@@ -34,4 +34,8 @@ module.exports = class Book {
         const error = validation.error?.details[0]
         return error ? error.message : false
     }
+
+    isSame({title, author, publicationYear}) {
+        return (this.title === title) && (this.author === author) && (this.publicationYear === publicationYear)
+    }
 }
