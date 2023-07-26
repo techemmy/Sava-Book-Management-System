@@ -1,3 +1,4 @@
+const config = require("./config")
 
 const sendResponse = (responseObject, statusCode, responseBody) => {
     /**
@@ -18,7 +19,8 @@ const generateBookKey = (bookISBN) => {
      * @param {string} bookISBN - the ISBN of for a book
      * @returns {string} - the key for storing the book in memory
      */
-    return `books:${bookISBN}`
+    const prefix = config.redis.KEY_PREFIX
+    return `${prefix}:${bookISBN}`
 }
 
 const getISBNFromUrl = (url) => {

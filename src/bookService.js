@@ -1,10 +1,11 @@
+const config = require("./config")
 const redisStore = require("./redisStore")
 const { generateBookKey } = require("./utils")
 
 const getBooks = async () => {
     const client = redisStore.getClient()
     const books = []
-    const keys = await client.keys(`books:*`)
+    const keys = await client.keys(`${config.redis.KEY_PREFIX}:*`)
     for (const key of keys) {
         const bookData = await client.hGetAll(key);
         books.push(bookData)
