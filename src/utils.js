@@ -45,10 +45,12 @@ const getRequestBody = (req) => {
         })
 
         req.on('end', () => {
-            // the request body will only be an empty object '{}' if the request body
-            // is an empty string to prevent error parsing an empty string
-            const requestData = JSON.parse(requestBody || '{}');
-            return resolve(requestData)
+            try {
+                const requestData = JSON.parse(requestBody);
+                return resolve(requestData)
+            } catch (error) {
+                reject("Invalid input. Make sure you data is properly formatted.")
+            }
         })
     })
 }
