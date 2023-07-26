@@ -17,11 +17,14 @@ const createBook = async (req, res) => {
         const requestData = await getRequestBody(req)
 
         const newBook = new Book(requestData)
+
+        // validate the user input
         const validationError = await newBook.validate()
         if (validationError) {
             return sendResponse(res, 422, { "status": false, message: validationError })
         }
 
+        // check if the books exists already
         const existingBook = await bookService.getBookByISBN(newBook.ISBN);
         if (Object.keys(existingBook).length > 0) {
             return sendResponse(res, 409, { "status": false, message: "Book already exists!" })
