@@ -87,15 +87,23 @@ const updateBookByISBN = async (req, res) => {
     }
 }
 
-const deleteBookByISBN = (req, res) => {
+const deleteBookByISBN = async (req, res) => {
     try {
-        sendResponse(res, 200, { "status": true, message: "delete book by isbn" })
+        const ISBN = getISBNFromUrl(req.url)
+        const book = await bookService.getBookByISBN(ISBN)
+
+        if (Object.keys(book).length === 0) {
+            return sendResponse(res, 404, { "status": false, message: "Book not found" })
+        }
+
+        await bookService.deleteBookByISBN(ISBN)
+        sendResponse(res, 200, { "status": true, message: "Book deleted!" })
     } catch (error) {
         console.log(error)
         sendResponse(res, 400, { "status": false, message: error.message })
     }
 }
-
+// TODO: work on consistency with the error messages in the catch of the try/catch
 module.exports = {
     getBooks,
     getBookByISBN,

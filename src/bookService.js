@@ -34,9 +34,17 @@ const updateBookByISBN = async (ISBN, bookUpdate) => {
     return bookUpdate
 }
 
+const deleteBookByISBN = async (ISBN) => {
+    const client = redisStore.getClient()
+    const bookKey = generateBookKey(ISBN)
+    await client.del(bookKey)
+    return ISBN
+}
+
 module.exports = {
     getBooks,
     createBook,
     getBookByISBN,
-    updateBookByISBN
+    updateBookByISBN,
+    deleteBookByISBN
 }
