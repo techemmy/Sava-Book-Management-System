@@ -41,10 +41,26 @@ const deleteBookByISBN = async (ISBN) => {
     return ISBN
 }
 
+const searchBooks = async (searchTerm) => {
+    const books = await getBooks()
+
+    const searchResuts = []
+    for (let book of books) {
+        const searchInTitle = book.title.toLowerCase().includes(searchTerm.toLowerCase())
+        const searchInAuthor = book.author.toLowerCase().includes(searchTerm.toLowerCase())
+        if (searchInTitle || searchInAuthor) {
+            searchResuts.push(book)
+        }
+    }
+
+    return searchResuts
+}
+
 module.exports = {
     getBooks,
     createBook,
     getBookByISBN,
     updateBookByISBN,
-    deleteBookByISBN
+    deleteBookByISBN,
+    searchBooks
 }
