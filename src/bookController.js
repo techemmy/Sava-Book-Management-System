@@ -56,12 +56,36 @@ const getBookByISBN = async (req, res) => {
 
 // TODO: updateBookByISBN and deleteBookByISBN routes/functionalities
 
-const updateBookByISBN = (req, res) => {
+const updateBookByISBN = async (req, res) => {
     try {
-        sendResponse(res, 200, { "status": true, message: "update book by isbn" })
+        const ISBN = getISBNFromUrl(req.url)
+        const oldBook = await bookService.getBookByISBN(ISBN)
+        const update = await getRequestBody(req)
+
+        // check if books exists
+        if (Object.keys(oldBook).length === 0) {
+            return sendResponse(res, 404, { "status": false, message: "Book not found" })
+        }
+
+        // update the book and make sure the ISBN cannot be manipulated
+        const bookUpdate = new Book({...oldBook, ...update, ISBN})
+
+        // validate the updated book
+        const validationError = await bookUpdate.validate()
+        if (validationError) {
+            return sendResponse(res, 422, { "status": false, message: validationError })
+        }
+
+        // prevent write to database if there is no difference in the update and the current book
+        if (bookUpdate.isSame(oldBook)) {
+            return sendResponse(res, 204, { "status": true, message: "No changes made!" })
+        }
+
+        await bookService.updateBookByISBN(ISBN, bookUpdate)
+        sendResponse(res, 200, { "status": true, message: "Book updated!" })
     } catch (error) {
         console.log(error)
-        sendResponse(res, 400, { "status": false, message: error.message })
+        sendResponse(res, 400, { "status": false, message: error })
     }
 }
 
