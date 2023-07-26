@@ -18,7 +18,7 @@ const createBook = async (req, res) => {
         const existingBook = await bookService.getBookByISBN(requestData.ISBN);
 
         if (Object.keys(existingBook).length > 0) {
-            sendResponse(res, 409, { "status": false, message: "Book already exists!" })
+            return sendResponse(res, 409, { "status": false, message: "Book already exists!" })
         }
 
         const newBook = new Book(requestData)
@@ -28,7 +28,7 @@ const createBook = async (req, res) => {
             return sendResponse(res, 422, { "status": false, message: validationError })
         }
 
-        await bookService.createBook(requestData)
+        await bookService.createBook(newBook)
         sendResponse(res, 200, { "status": true, message: "Book created!", newBook })
     } catch (error) {
         console.log(error)
