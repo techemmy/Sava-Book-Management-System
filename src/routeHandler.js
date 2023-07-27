@@ -12,7 +12,7 @@ module.exports = (req, res) => {
         // GET '/' -> homepage
         sendResponse(res, 200, { status: true, message: 'Homepage' })
     } else if (req.url === baseUrl && req.method === "GET") {
-        // GET '/books' -> to get bboks
+        // GET '/books' -> to get books
         getBooks(req, res)
     } else if (req.url === baseUrl && req.method === "POST") {
         // POST '/books' -> to create bboks
