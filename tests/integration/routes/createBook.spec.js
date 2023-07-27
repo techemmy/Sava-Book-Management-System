@@ -20,7 +20,7 @@ describe("POST '/books' route", () => {
         await testHelper.cleanupDb(redisClient)
     })
 
-    test("should get create a book", async () => {
+    test("should create a book", async () => {
         const response = await request(app).post("/books").send(bookFixtures[0])
         expect(response.status).toBe(201)
         expect(response.body.status).toBeTruthy()
