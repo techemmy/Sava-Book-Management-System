@@ -115,7 +115,7 @@ const searchBooks = async (req, res) => {
 
         const searchTerm = url.substring(searchTermLocation + 1, url.length)
         const books = await bookService.searchBooks(searchTerm)
-        sendResponse(res, 200, { "status": false, message: "Search Results", books})
+        sendResponse(res, 200, { "status": true, message: "Search Results", books})
     } catch (error) {
         logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
