@@ -17,7 +17,6 @@ const bookSchema = Joi.object({
         .required(),
     ISBN: Joi.string()
         .min(10)
-        .max(13)
         .required()
 })
 
@@ -35,7 +34,7 @@ module.exports = class Book {
         return error ? error.message : false
     }
 
-    isSame({title, author, publicationYear}) {
+    isSame({ title, author, publicationYear }) {
         return (this.title === title) && (this.author === author) && (this.publicationYear === publicationYear)
     }
 }
