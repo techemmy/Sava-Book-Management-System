@@ -8,6 +8,8 @@ let redisClient;
 beforeAll(async () => {
     redisClient = redisStore.getClient();
     await redisClient.connect()
+    await testHelper.createBooks(bookFixtures, redisClient)
+
 })
 
 afterAll(async () => {
@@ -15,18 +17,9 @@ afterAll(async () => {
     await redisClient.disconnect();
 })
 
-beforeEach(async () => {
-    await testHelper.createBooks(bookFixtures, redisClient)
-})
-
-afterEach(async () => {
-    await testHelper.cleanupDb(redisClient)
-})
-
 describe("PATCH '/books/:id' route", () => {
-
-
     test("should update a book in the database", async () => {
+        await testHelper.createBook(bookFixtures[0], redisClient)
         const bookUpdate = bookFixtures[1]
         const response = await request(app)
             .patch(`/books/${bookFixtures[0].ISBN}`).send(bookUpdate)
@@ -55,11 +48,10 @@ describe("PATCH '/books/:id' route", () => {
     })
 
     test("should not write to the database update is the same as current book", async () => {
+        await testHelper.createBook(bookFixtures[0], redisClient)
         const response = await request(app)
             .patch(`/books/${bookFixtures[0].ISBN}`).send(bookFixtures[0])
         expect(response.status).toBe(204)
     })
-
-
 })
 
