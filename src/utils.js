@@ -15,12 +15,13 @@ const sendResponse = (responseObject, statusCode, responseBody) => {
 
 const generateBookKey = (bookISBN) => {
     /**
-     * Generates a key for storing books in the memory
+     * Generates a key for storing books in the memory based on the environment
      * @param {string} bookISBN - the ISBN of for a book
      * @returns {string} - the key for storing the book in memory
      */
     const prefix = config.redis.KEY_PREFIX
-    return `${prefix}:${bookISBN}`
+    const isTestingMode = config.server.NODE_ENV === "testing"
+    return isTestingMode ? `testing:books:${bookISBN}` : `${prefix}:${bookISBN}`
 }
 
 const getISBNFromUrl = (url) => {
