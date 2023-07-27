@@ -51,10 +51,25 @@ const createBooks = async (books, redisClient) => {
     await Promise.all(booksToCreate)
 }
 
+const searchTermInBooks = (searchTerm, books) => {
+    /**
+     * Searches a list of books by book title or book author
+     * @param {string} searchTerm - the word to look for in the books title or author field
+     * @param {object} books - an array of books
+     * @returns {object} - the search results
+     */
+    const searchTermLowercase = searchTerm.toLowerCase()
+    return books.filter(
+        book => book.title.toLowerCase().includes(searchTermLowercase)
+                || book.author.toLowerCase().includes(searchTermLowercase)
+        )
+}
+
 module.exports = {
     cleanupDb,
     createBook,
     getBookByISBN,
     getBooks,
-    createBooks
+    createBooks,
+    searchTermInBooks
 }
