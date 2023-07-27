@@ -35,6 +35,6 @@ module.exports = class Book {
     }
 
     isSame({ title, author, publicationYear }) {
-        return (this.title === title) && (this.author === author) && (this.publicationYear === publicationYear)
+        return (this.title === title) && (this.author === author) && (this.publicationYear === parseInt(publicationYear))
     }
 }
