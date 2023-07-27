@@ -80,8 +80,8 @@ const updateBookByISBN = async (req, res) => {
             return sendResponse(res, 204, { "status": true, message: "No changes made!" })
         }
 
-        await bookService.updateBookByISBN(ISBN, bookUpdate)
-        sendResponse(res, 200, { "status": true, message: "Book updated!" })
+        const updatedBook = await bookService.updateBookByISBN(ISBN, bookUpdate)
+        sendResponse(res, 200, { "status": true, message: "Book updated!", updatedBook })
     } catch (error) {
         logger.error(error)
         sendResponse(res, 400, { "status": false, message: error.message })
