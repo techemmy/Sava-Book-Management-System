@@ -15,7 +15,7 @@ module.exports = (req, res) => {
         // GET '/books' -> to get books
         getBooks(req, res)
     } else if (req.url === baseUrl && req.method === "POST") {
-        // POST '/books' -> to create bboks
+        // POST '/books' -> to create books
         createBook(req, res)
     } else if (req.url.startsWith(`${baseUrl}/search`) && req.method === "GET") {
         // GET '/books/search' -> to search for books by term (author or title)
