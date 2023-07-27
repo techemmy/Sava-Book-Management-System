@@ -20,9 +20,7 @@ describe("Book Service Tests", () => {
     })
 
     it("should get books from the database", async () => {
-        const booksToCreate = bookFixtures.map(async book => testHelper.createBook(book, redisClient))
-        await Promise.all(booksToCreate)
-
+        await testHelper.createBooks(bookFixtures, redisClient)
         const books = await bookService.getBooks()
         expect(books.length).toBe(bookFixtures.length)
     })
