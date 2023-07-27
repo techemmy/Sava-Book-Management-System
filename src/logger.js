@@ -1,4 +1,5 @@
 const winston = require("winston")
+const config = require("./config")
 
 const customLoggingLevels = {
     levels: {
@@ -38,7 +39,7 @@ const logger = winston.createLogger({
 // If we're not in production then log to all the levels
 // else log only info, error and warn levels
 //
-if (process.env.NODE_ENV !== 'production') {
+if (config.server.NODE_ENV !== 'production') {
     logger.add(new winston.transports.Console({ level: 'verbose' })); // Set the Console transport to log all levels from verbose and above
 } else {
     logger.add(new winston.transports.Console({ level: 'info' })) // Set the Console transport to log all levels from info and above
