@@ -25,6 +25,14 @@ describe("GET '/books/search' route", () => {
         expect(response.body.books.length).toEqual(searchResults.length)
     })
 
+    test("should return all the books in the database if an empty string is passed", async () => {
+        await testHelper.createBooks(bookFixtures, redisClient)
+        const response = await request(app).get("/books/search?term=")
+        expect(response.status).toBe(200)
+        expect(response.body.status).toBeTruthy()
+        expect(response.body.books.length).toEqual(bookFixtures.length)
+    })
+
     test("should fail to search database is no search term is found", async () => {
         const response = await request(app).get("/books/search?")
         expect(response.status).toBe(400)
