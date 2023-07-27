@@ -46,9 +46,15 @@ const getBookByISBN = async (ISBN, redisClient) => {
     return book
 }
 
+const createBooks = async (books, redisClient) => {
+    const booksToCreate = books.map(async book => createBook(book, redisClient))
+    await Promise.all(booksToCreate)
+}
+
 module.exports = {
     cleanupDb,
     createBook,
     getBookByISBN,
-    getBooks
+    getBooks,
+    createBooks
 }
