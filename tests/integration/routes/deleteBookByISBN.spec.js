@@ -8,8 +8,6 @@ let redisClient;
 beforeAll(async () => {
     redisClient = redisStore.getClient();
     await redisClient.connect()
-    await testHelper.createBooks(bookFixtures, redisClient)
-
 })
 
 afterAll(async () => {
@@ -19,6 +17,7 @@ afterAll(async () => {
 
 describe("DELETE '/books' route", () => {
     test("should delete a book", async () => {
+        await testHelper.createBook(bookFixtures[0], redisClient)
         const response = await request(app).delete(`/books/${bookFixtures[0].ISBN}`)
         expect(response.status).toBe(200)
         expect(response.body.status).toBeTruthy()
