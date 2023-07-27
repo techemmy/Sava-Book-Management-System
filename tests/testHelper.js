@@ -58,7 +58,7 @@ const searchTermInBooks = (searchTerm, books) => {
      * @param {object} books - an array of books
      * @returns {object} - the search results
      */
-    const searchTermLowercase = searchTerm.toLowerCase()
+    const searchTermLowercase = searchTerm?.toLowerCase()
     return books.filter(
         book => book.title.toLowerCase().includes(searchTermLowercase)
                 || book.author.toLowerCase().includes(searchTermLowercase)
