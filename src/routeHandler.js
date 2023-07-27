@@ -8,7 +8,10 @@ module.exports = (req, res) => {
     const bookPathWithISBNRegex = /books\/([A-Za-z0-9]?(-[A-Za-z0-9]?)?)/i
 
     // handle the urls based on the endpoint
-    if (req.url === baseUrl && req.method === "GET") {
+    if (req.url === "/") {
+        // GET '/' -> homepage
+        sendResponse(res, 200, { status: true, message: 'Homepage' })
+    } else if (req.url === baseUrl && req.method === "GET") {
         // GET '/books' -> to get bboks
         getBooks(req, res)
     } else if (req.url === baseUrl && req.method === "POST") {
@@ -27,6 +30,6 @@ module.exports = (req, res) => {
         // DELETE '/books/:ISBN' -> to delete a book by the ISBN number
         deleteBookByISBN(req, res)
     } else {
-        sendResponse(res, 404, {status: false, message: 'Path not found'})
+        sendResponse(res, 404, { status: false, message: 'Path not found' })
     }
 }
