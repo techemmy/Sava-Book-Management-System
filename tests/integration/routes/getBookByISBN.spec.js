@@ -8,6 +8,7 @@ let redisClient;
 beforeAll(async () => {
     redisClient = redisStore.getClient();
     await redisClient.connect()
+    await testHelper.createBooks(bookFixtures, redisClient)
 })
 
 afterAll(async () => {
@@ -16,10 +17,6 @@ afterAll(async () => {
 })
 
 describe("GET '/books/:ISBN' route", () => {
-    beforeAll(async () => {
-        await testHelper.createBooks(bookFixtures, redisClient)
-    })
-
     test("should get a book by the ISBN", async () => {
         const bookToTest = bookFixtures[0]
         const response = await request(app).get(`/books/${bookToTest.ISBN}`)
