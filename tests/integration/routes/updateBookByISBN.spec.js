@@ -15,13 +15,16 @@ afterAll(async () => {
     await redisClient.disconnect();
 })
 
+beforeEach(async () => {
+    await testHelper.createBooks(bookFixtures, redisClient)
+})
+
+afterEach(async () => {
+    await testHelper.cleanupDb(redisClient)
+})
+
 describe("PATCH '/books/:id' route", () => {
-    beforeEach(async () => {
-        await testHelper.createBooks(bookFixtures, redisClient)
-    })
-    afterEach(async () => {
-        await testHelper.cleanupDb(redisClient)
-    })
+
 
     test("should update a book in the database", async () => {
         const bookUpdate = bookFixtures[1]
