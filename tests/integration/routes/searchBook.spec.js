@@ -8,6 +8,7 @@ let redisClient;
 beforeAll(async () => {
     redisClient = redisStore.getClient();
     await redisClient.connect()
+    await testHelper.createBooks(bookFixtures, redisClient)
 })
 
 afterAll(async () => {
@@ -17,7 +18,6 @@ afterAll(async () => {
 
 describe("GET '/books/search' route", () => {
     test("should get search for books with 'l' in the database", async () => {
-        await testHelper.createBooks(bookFixtures, redisClient)
         const searchResults = testHelper.searchTermInBooks('l', bookFixtures)
         const response = await request(app).get("/books/search?term=l")
         expect(response.status).toBe(200)
@@ -26,7 +26,6 @@ describe("GET '/books/search' route", () => {
     })
 
     test("should return all the books in the database if an empty string is passed", async () => {
-        await testHelper.createBooks(bookFixtures, redisClient)
         const response = await request(app).get("/books/search?term=")
         expect(response.status).toBe(200)
         expect(response.body.status).toBeTruthy()
