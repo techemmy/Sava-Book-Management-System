@@ -12,7 +12,7 @@ client.on('connect', function () {
 });
 
 client.on('error', function () {
-    logger.info('Error connecting redis');
+    logger.error('Error connecting redis');
 });
 
 module.exports = {
