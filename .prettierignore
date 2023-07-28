@@ -6,3 +6,5 @@ logs
 dump.rdb
 README.md
 .eslintrc.json
+package.json
+package-lock.json
