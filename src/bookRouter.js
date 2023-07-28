@@ -1,35 +1,36 @@
 const { getBooks, getBookByISBN, createBook, updateBookByISBN, deleteBookByISBN, searchBooks } = require("./bookController");
 const { sendResponse } = require("./utils");
 
+const baseUrl = "/books";
+
+// Regular expression to test for paths with an ISBN number in the URL.
+const bookPathWithISBNRegex = /books\/([A-Za-z0-9]?(-[A-Za-z0-9]?)?)/i;
+
+// Request handler function for processing incoming requests.
 module.exports = (req, res) => {
-    const baseUrl = "/books"
-
-    // regex to test for paths with an ISBN number
-    const bookPathWithISBNRegex = /books\/([A-Za-z0-9]?(-[A-Za-z0-9]?)?)/i
-
-    // handle the urls based on the endpoint
+    // Handle the root URL, returning a simple homepage response.
     if (req.url === "/") {
-        // GET '/' -> homepage
-        sendResponse(res, 200, { status: true, message: 'Homepage' })
+        sendResponse(res, 200, { status: true, message: 'Homepage' });
     } else if (req.url === baseUrl && req.method === "GET") {
-        // GET '/books' -> to get books
-        getBooks(req, res)
+        // Handle GET request to '/books', calls the 'getBooks' function to retrieve all books.
+        getBooks(req, res);
     } else if (req.url === baseUrl && req.method === "POST") {
-        // POST '/books' -> to create books
-        createBook(req, res)
+        // Handle POST request to '/books', calls the 'createBook' function to create a new book.
+        createBook(req, res);
     } else if (req.url.startsWith(`${baseUrl}/search`) && req.method === "GET") {
-        // GET '/books/search' -> to search for books by term (author or title)
-        searchBooks(req, res)
+        // Handle GET request to '/books/search', calls the 'searchBooks' function to search for books by term.
+        searchBooks(req, res);
     } else if (bookPathWithISBNRegex.test(req.url) && req.method === "GET") {
-        // GET '/books/:ISBN' -> to get book by the ISBN number
-        getBookByISBN(req, res)
+        // Handle GET request to '/books/:ISBN', calls the 'getBookByISBN' function to get a book by its ISBN number.
+        getBookByISBN(req, res);
     } else if (bookPathWithISBNRegex.test(req.url) && req.method === "PATCH") {
-        // PATCH '/books/:ISBN' -> to update a book by the ISBN number
-        updateBookByISBN(req, res)
+        // Handle PATCH request to '/books/:ISBN', calls the 'updateBookByISBN' function to update a book by its ISBN number.
+        updateBookByISBN(req, res);
     } else if (bookPathWithISBNRegex.test(req.url) && req.method === "DELETE") {
-        // DELETE '/books/:ISBN' -> to delete a book by the ISBN number
-        deleteBookByISBN(req, res)
+        // Handle DELETE request to '/books/:ISBN', calls the 'deleteBookByISBN' function to delete a book by its ISBN number.
+        deleteBookByISBN(req, res);
     } else {
-        sendResponse(res, 404, { status: false, message: 'Path not found' })
+        // Handle any other unhandled paths with a 404 response.
+        sendResponse(res, 404, { status: false, message: 'Path not found' });
     }
-}
+};
