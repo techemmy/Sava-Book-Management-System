@@ -1,5 +1,5 @@
-require("dotenv").config()
-const baseUrl = `http://localhost:${process.env.PORT}`
+require("dotenv").config();
+const baseUrl = `http://localhost:${process.env.PORT}`;
 
 /**
  * Fetches all books from the server.
@@ -12,18 +12,18 @@ const baseUrl = `http://localhost:${process.env.PORT}`
  * console.log(books);
  */
 const getBooks = async () => {
-    try {
-        const response = await fetch(`${baseUrl}/books`, {
-            method: 'GET'
-        })
-        const books = await response.json()
-        return books
-    } catch (error) {
-        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
-        console.log("Make sure the server is running")
-        return false;
-    }
-}
+  try {
+    const response = await fetch(`${baseUrl}/books`, {
+      method: "GET",
+    });
+    const books = await response.json();
+    return books;
+  } catch (error) {
+    console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+    console.log("Make sure the server is running");
+    return false;
+  }
+};
 
 /**
  * Creates a new book by sending book details to the server.
@@ -48,19 +48,19 @@ const getBooks = async () => {
  * console.log(createdBook);
  */
 const createBook = async (bookDetails) => {
-    try {
-        const response = await fetch(`${baseUrl}/books`, {
-            method: 'POST',
-            body: JSON.stringify(bookDetails)
-        })
-        const book = await response.json()
-        return book
-    } catch (error) {
-        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
-        console.log("Make sure the server is running")
-        return false;
-    }
-}
+  try {
+    const response = await fetch(`${baseUrl}/books`, {
+      method: "POST",
+      body: JSON.stringify(bookDetails),
+    });
+    const book = await response.json();
+    return book;
+  } catch (error) {
+    console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+    console.log("Make sure the server is running");
+    return false;
+  }
+};
 
 /**
  * Fetches a single book from the server using its ISBN (International Standard Book Number).
@@ -75,18 +75,18 @@ const createBook = async (bookDetails) => {
  * console.log(book);
  */
 const getBookByISBN = async (ISBN) => {
-    try {
-        const response = await fetch(`${baseUrl}/books/${ISBN}`, {
-            method: 'GET'
-        })
-        const book = await response.json()
-        return book
-    } catch (error) {
-        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
-        console.log("Make sure the server is running")
-        return false;
-    }
-}
+  try {
+    const response = await fetch(`${baseUrl}/books/${ISBN}`, {
+      method: "GET",
+    });
+    const book = await response.json();
+    return book;
+  } catch (error) {
+    console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+    console.log("Make sure the server is running");
+    return false;
+  }
+};
 
 /**
  * Updates a book on the server using its ISBN and the provided book update details.
@@ -111,19 +111,19 @@ const getBookByISBN = async (ISBN) => {
  * console.log(updatedBook);
  */
 const updateBookByISBN = async (ISBN, bookUpdate) => {
-    try {
-        const response = await fetch(`${baseUrl}/books/${ISBN}`, {
-            method: 'PATCH',
-            body: JSON.stringify(bookUpdate)
-        })
-        const book = await response.json()
-        return book
-    } catch (error) {
-        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
-        console.log("Make sure the server is running")
-        return false;
-    }
-}
+  try {
+    const response = await fetch(`${baseUrl}/books/${ISBN}`, {
+      method: "PATCH",
+      body: JSON.stringify(bookUpdate),
+    });
+    const book = await response.json();
+    return book;
+  } catch (error) {
+    console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+    console.log("Make sure the server is running");
+    return false;
+  }
+};
 
 /**
  * Deletes a book from the server using its ISBN (International Standard Book Number).
@@ -138,18 +138,18 @@ const updateBookByISBN = async (ISBN, bookUpdate) => {
  * console.log(deletedBook);
  */
 const deleteBookByISBN = async (ISBN) => {
-    try {
-        const response = await fetch(`${baseUrl}/books/${ISBN}`, {
-            method: 'DELETE'
-        })
-        const book = await response.json()
-        return book
-    } catch (error) {
-        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
-        console.log("Make sure the server is running")
-        return false;
-    }
-}
+  try {
+    const response = await fetch(`${baseUrl}/books/${ISBN}`, {
+      method: "DELETE",
+    });
+    const book = await response.json();
+    return book;
+  } catch (error) {
+    console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+    console.log("Make sure the server is running");
+    return false;
+  }
+};
 
 /**
  * Performs a search on the server for books based on the provided search term.
@@ -164,24 +164,24 @@ const deleteBookByISBN = async (ISBN) => {
  * console.log(searchResults);
  */
 const searchBook = async (searchTerm) => {
-    try {
-        const response = await fetch(`${baseUrl}/books/search?term=${searchTerm}`, {
-            method: 'GET'
-        })
-        const book = await response.json()
-        return book
-    } catch (error) {
-        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
-        console.log("Make sure the server is running")
-        return false;
-    }
-}
+  try {
+    const response = await fetch(`${baseUrl}/books/search?term=${searchTerm}`, {
+      method: "GET",
+    });
+    const book = await response.json();
+    return book;
+  } catch (error) {
+    console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+    console.log("Make sure the server is running");
+    return false;
+  }
+};
 
 module.exports = {
-    getBooks,
-    createBook,
-    getBookByISBN,
-    updateBookByISBN,
-    deleteBookByISBN,
-    searchBook
-}
+  getBooks,
+  createBook,
+  getBookByISBN,
+  updateBookByISBN,
+  deleteBookByISBN,
+  searchBook,
+};

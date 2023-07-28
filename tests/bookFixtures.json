@@ -1,26 +1,26 @@
 [
-    {
-        "author": "Jane Cruse",
-        "title": "Pride not Prejudice",
-        "ISBN": "978-0-14-143951",
-        "publicationYear": 2000
-    },
-    {
-        "author": "F. Scott Fitzgerald",
-        "title": "The Great Gatsby",
-        "ISBN": "978-0-7432-7356-5",
-        "publicationYear": 1925
-    },
-    {
-        "author": "Harper Lee",
-        "title": "To Kill a Mockingbird",
-        "ISBN": "0-06-112008-1",
-        "publicationYear": 1960
-    },
-    {
-        "author": "George Orwell",
-        "title": "1984",
-        "ISBN": "978-0-452-28423-4",
-        "publicationYear": 1949
-    }
+  {
+    "author": "Jane Cruse",
+    "title": "Pride not Prejudice",
+    "ISBN": "978-0-14-143951",
+    "publicationYear": 2000
+  },
+  {
+    "author": "F. Scott Fitzgerald",
+    "title": "The Great Gatsby",
+    "ISBN": "978-0-7432-7356-5",
+    "publicationYear": 1925
+  },
+  {
+    "author": "Harper Lee",
+    "title": "To Kill a Mockingbird",
+    "ISBN": "0-06-112008-1",
+    "publicationYear": 1960
+  },
+  {
+    "author": "George Orwell",
+    "title": "1984",
+    "ISBN": "978-0-452-28423-4",
+    "publicationYear": 1949
+  }
 ]

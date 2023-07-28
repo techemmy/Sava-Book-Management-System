@@ -1,4 +1,4 @@
-const config = require("./config")
+const config = require("./config");
 
 /**
  * Generates a JSON response based on the status code and responseBody
@@ -9,9 +9,9 @@ const config = require("./config")
  * @param {object} responseBody - The data to be sent to the user as the response body.
  */
 const sendResponse = (responseObject, statusCode, responseBody) => {
-    responseObject.writeHead(statusCode, { "Content-Type": "application/json" });
-    responseObject.end(JSON.stringify(responseBody))
-}
+  responseObject.writeHead(statusCode, { "Content-Type": "application/json" });
+  responseObject.end(JSON.stringify(responseBody));
+};
 
 /**
  * Generates a key for storing books in the memory based on the environment.
@@ -20,11 +20,11 @@ const sendResponse = (responseObject, statusCode, responseBody) => {
  * @returns {string} - The key for storing the book in memory.
  */
 const generateBookKey = (bookISBN) => {
-    const prefix = config.redis.KEY_PREFIX
-    const testPrefix = config.redis.TEST_KEY_PREFIX
-    const isTestingMode = config.server.NODE_ENV === "testing"
-    return isTestingMode ? `${testPrefix}:${bookISBN}` : `${prefix}:${bookISBN}`
-}
+  const prefix = config.redis.KEY_PREFIX;
+  const testPrefix = config.redis.TEST_KEY_PREFIX;
+  const isTestingMode = config.server.NODE_ENV === "testing";
+  return isTestingMode ? `${testPrefix}:${bookISBN}` : `${prefix}:${bookISBN}`;
+};
 
 /**
  * Retrieves the ISBN number from the request URL.
@@ -33,8 +33,8 @@ const generateBookKey = (bookISBN) => {
  * @returns {string} - The ISBN number.
  */
 const getISBNFromUrl = (url) => {
-    return url.split('/').pop()
-}
+  return url.split("/").pop();
+};
 
 /**
  * Gets the data passed in the body of a request.
@@ -43,26 +43,30 @@ const getISBNFromUrl = (url) => {
  * @returns {Promise} - A promise that resolves to the request body data.
  */
 const getRequestBody = (req) => {
-    return new Promise((resolve, reject) => {
-        let requestBody = '';
-        req.on('data', chunk => {
-            requestBody += chunk
-        })
+  return new Promise((resolve, reject) => {
+    let requestBody = "";
+    req.on("data", (chunk) => {
+      requestBody += chunk;
+    });
 
-        req.on('end', () => {
-            try {
-                const requestData = JSON.parse(requestBody);
-                return resolve(requestData)
-            } catch (error) {
-                reject(new Error("Invalid input. Make sure you data is properly formatted too."))
-            }
-        })
-    })
-}
+    req.on("end", () => {
+      try {
+        const requestData = JSON.parse(requestBody);
+        return resolve(requestData);
+      } catch (error) {
+        reject(
+          new Error(
+            "Invalid input. Make sure you data is properly formatted too.",
+          ),
+        );
+      }
+    });
+  });
+};
 
 module.exports = {
-    sendResponse,
-    generateBookKey,
-    getISBNFromUrl,
-    getRequestBody
-}
+  sendResponse,
+  generateBookKey,
+  getISBNFromUrl,
+  getRequestBody,
+};
