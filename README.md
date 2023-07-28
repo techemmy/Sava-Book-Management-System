@@ -51,9 +51,9 @@ The Book Management System is a server-side application built with Node.js that 
 * ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) NodeJs - [Cross-platform JavaScript runtime environment](https://nodejs.org/)
 * ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) Redis - [in-memory data store](https://redis.io/)
 * ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white) Jest - [Javascript testing framework](https://jestjs.io/)
+* ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD) Nodemon - [For monitoring changes and automatically reloading my server](https://nodemon.io/)
 * Supertest - [Library for testing HTTP servers](https://www.npmjs.com/package/supertest)
 * Commander - [Library for building CLI(command line interfaces)](npmjs.com/package/commander)
-* ![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD) Nodemon - [For monitoring changes and automatically reloading my server](https://nodemon.io/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
