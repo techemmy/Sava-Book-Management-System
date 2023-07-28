@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "book-manager": "./cli/index.js"
+  },
   "directories": {
     "doc": "docs"
   },
@@ -16,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "commander": "^11.0.0",
     "dotenv": "^16.3.1",
     "joi": "^17.9.2",
     "redis": "^4.6.7",
@@ -25,7 +29,6 @@
     "cross-env": "^7.0.3",
     "jest": "^29.6.1",
     "nodemon": "^3.0.1",
-    "supertest": "^6.3.3",
-    "yargs": "^17.7.2"
+    "supertest": "^6.3.3"
   }
 }
