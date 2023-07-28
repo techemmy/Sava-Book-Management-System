@@ -9,8 +9,9 @@ const getBooks = async () => {
         const books = await response.json()
         return books
     } catch (error) {
-        console.log(error.message)
-        console.log("Make sure the local server is running.")
+        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+        console.log("Make sure the server is running")
+        return false;
     }
 }
 
@@ -24,8 +25,9 @@ const createBook = async (bookDetails) => {
         const book = await response.json()
         return book
     } catch (error) {
-        console.log(error)
-        console.log("Make sure the local server is running.")
+        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+        console.log("Make sure the server is running")
+        return false;
     }
 }
 
@@ -37,8 +39,9 @@ const getBookByISBN = async (ISBN) => {
         const book = await response.json()
         return book
     } catch (error) {
-        console.log(error.message)
-        console.log("Make sure the local server is running.")
+        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+        console.log("Make sure the server is running")
+        return false;
     }
 }
 
@@ -51,8 +54,9 @@ const updateBookByISBN = async (ISBN, bookUpdate) => {
         const book = await response.json()
         return book
     } catch (error) {
-        console.log(error)
-        console.log("Make sure the local server is running.")
+        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+        console.log("Make sure the server is running")
+        return false;
     }
 }
 
@@ -64,8 +68,9 @@ const deleteBookByISBN = async (ISBN) => {
         const book = await response.json()
         return book
     } catch (error) {
-        console.log(error.message)
-        console.log("Make sure the local server is running.")
+        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+        console.log("Make sure the server is running")
+        return false;
     }
 }
 
@@ -77,8 +82,9 @@ const searchBook = async (searchTerm) => {
         const book = await response.json()
         return book
     } catch (error) {
-        console.log(error.message)
-        console.log("Make sure the local server is running.")
+        console.error(`Error connecting to server at ${baseUrl}:`, error.message);
+        console.log("Make sure the server is running")
+        return false;
     }
 }
 
