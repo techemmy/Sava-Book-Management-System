@@ -84,7 +84,7 @@ const searchBooks = async (searchTerm) => {
     const books = await getBooks()
 
     const searchResuts = []
-    for (let book of books) {
+    for (const book of books) {
         const searchInTitle = book.title.toLowerCase().includes(searchTerm.toLowerCase())
         const searchInAuthor = book.author.toLowerCase().includes(searchTerm.toLowerCase())
         if (searchInTitle || searchInAuthor) {

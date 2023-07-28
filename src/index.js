@@ -3,9 +3,9 @@ require('dotenv').config(); // Load environment variables from .env file
 const server = require("./app");
 const config = require("./config");
 const redisStore = require("./redisStore");
-const logger = require("./logger")
+const logger = require("./logger");
 
-void (async () => {
+(async () => {
     const redisClient = redisStore.getClient();
     await redisClient.connect()
 })();
