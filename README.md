@@ -113,9 +113,6 @@ The project includes a CLI app that allows users to interact with the API from t
    book-manager -h
    ```
 
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
