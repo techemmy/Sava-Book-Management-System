@@ -11,5 +11,5 @@ const logger = require("./logger");
 })();
 
 server.listen(config.server.PORT, () => {
-  logger.info(`Server started at port ${config.server.PORT}`);
+  console.log(`Server started at port ${config.server.PORT}`);
 });

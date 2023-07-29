@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+<a name="readme-top" id="readme-top"></a>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -90,9 +90,6 @@ The Book Management System is a server-side application built with Node.js that 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 1. Start your redis server depending on how you installed it
@@ -107,14 +104,7 @@ The Book Management System is a server-side application built with Node.js that 
 3. Access the API:
 The API will be available at http://localhost:3000 (change the port if you specified a different one in the .env file).
 
-4. Use the CLI app
-The project includes a CLI app that allows users to interact with the API from the command line. To use the CLI, navigate to the root directory of the project and run for info on how to use it:
-   ```sh
-   book-manager -h
-   ```
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## API Endpoints
 - `GET /books` : Get a list of all books.
@@ -123,6 +113,23 @@ The project includes a CLI app that allows users to interact with the API from t
 - `PATCH /books/:ISBN` : Update an existing book by its ISBN number.
 - `DELETE /books/:ISBN` : Delete a book by its ISBN number.
 - `GET /books/search?term=keyword` : Search for books by title or author using the provided search term.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+# CLI App
+1. Make sure you have <a href="#installation">installed</a> and <a href="#usage">started running your server</a>
+
+2. Configure the CLI.
+  To make sure you have the CLI app installed globally on your PC, Run this command in the base directory of the project:
+   ```sh
+     npm link
+   ```
+
+3. To use the CLI, run this command on your terminal
+   ```sh
+   book-manager help
+   ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
