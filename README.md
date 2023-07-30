@@ -103,6 +103,7 @@ The Book Management System is a server-side application built with Node.js that 
 
 3. Access the API:
 The API will be available at http://localhost:3000 (change the port if you specified a different one in the .env file).
+4. [API documentation here](https://documenter.getpostman.com/view/11729879/2s9XxtxagQ)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
