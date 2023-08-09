@@ -43,6 +43,11 @@ const urlContainsISBN = (url) => {
   return bookPathWithISBNRegex.test(url)
 }
 
+const urlContainsPaginationParams = (url) => {
+  const urlRegex = /^\/books\?page=\d+$/
+  return urlRegex.test(url)
+}
+
 
 /**
  * Gets the data passed in the body of a request.
@@ -77,5 +82,6 @@ module.exports = {
   generateBookKey,
   getISBNFromUrl,
   getRequestBody,
-  urlContainsISBN
+  urlContainsISBN,
+  urlContainsPaginationParams
 };
