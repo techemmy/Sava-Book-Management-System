@@ -36,6 +36,14 @@ const getISBNFromUrl = (url) => {
   return url.split("/").pop();
 };
 
+
+const urlContainsISBN = (url) => {
+  // Regular expression to test for paths with an ISBN number in the URL.
+  const bookPathWithISBNRegex = /books\/([A-Za-z0-9]?(-[A-Za-z0-9]?)?)/i;
+  return bookPathWithISBNRegex.test(url)
+}
+
+
 /**
  * Gets the data passed in the body of a request.
  *
@@ -69,4 +77,5 @@ module.exports = {
   generateBookKey,
   getISBNFromUrl,
   getRequestBody,
+  urlContainsISBN
 };
