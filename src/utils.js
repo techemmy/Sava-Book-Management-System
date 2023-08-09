@@ -36,13 +36,24 @@ const getISBNFromUrl = (url) => {
   return url.split("/").pop();
 };
 
-
+/**
+ * Checks if a given URL contains an ISBN number in the path.
+ *
+ * @param {string} url - The URL to be tested.
+ * @returns {boolean} - `true` if the URL contains an ISBN number in the path, otherwise `false`.
+ */
 const urlContainsISBN = (url) => {
   // Regular expression to test for paths with an ISBN number in the URL.
   const bookPathWithISBNRegex = /books\/([A-Za-z0-9]?(-[A-Za-z0-9]?)?)/i;
   return bookPathWithISBNRegex.test(url)
 }
 
+/**
+ * Checks if a given URL contains pagination parameters for the "books" endpoint.
+ *
+ * @param {string} url - The URL to be tested.
+ * @returns {boolean} - `true` if the URL contains pagination parameters, otherwise `false`.
+ */
 const urlContainsPaginationParams = (url) => {
   const urlRegex = /^\/books\?page=\d+$/
   return urlRegex.test(url)
