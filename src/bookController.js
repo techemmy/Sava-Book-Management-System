@@ -5,8 +5,21 @@ const logger = require("./logger");
 
 const getBooks = async (req, res) => {
   try {
+    const PAGE_LIMIT = 5;
+
+    // Here, a regex is used to test if the url has a page parameter
+    // if it does not, we default the page parameter value to 1
+    // otherwise, we extract it
+    const pageNumberRegex = /\?page=(\d+)/;
+    const page = pageNumberRegex.test(req.url) ? req.url.match(pageNumberRegex)[1] : 1;
+
+    // The pageStart & pageStop is calculated to represent
+    // the range of the pagination according to the page url parameter
+    const pageStart = (page - 1) * PAGE_LIMIT;
+    const pageStop = page * PAGE_LIMIT;
+
     const books = await bookService.getBooks();
-    sendResponse(res, 200, { status: true, message: "get books", books });
+    sendResponse(res, 200, { status: true, message: "get books", books: books.slice(pageStart, pageStop) });
   } catch (error) {
     logger.error(error);
     sendResponse(res, 400, { status: false, message: error.message });
