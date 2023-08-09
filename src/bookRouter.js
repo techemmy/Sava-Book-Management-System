@@ -6,7 +6,11 @@ const {
   deleteBookByISBN,
   searchBooks,
 } = require("./bookController");
-const { sendResponse, urlContainsISBN, urlContainsPaginationParams } = require("./utils");
+const {
+  sendResponse,
+  urlContainsISBN,
+  urlContainsPaginationParams,
+} = require("./utils");
 
 const baseUrl = "/books";
 
@@ -15,7 +19,10 @@ module.exports = (req, res) => {
   // Handle the root URL, returning a simple homepage response.
   if (req.url === "/") {
     sendResponse(res, 200, { status: true, message: "Homepage" });
-  } else if ((req.url === baseUrl || urlContainsPaginationParams(req.url)) && req.method === "GET") {
+  } else if (
+    (req.url === baseUrl || urlContainsPaginationParams(req.url)) &&
+    req.method === "GET"
+  ) {
     // Handle GET request to '/books', calls the 'getBooks' function to retrieve all books.
     getBooks(req, res);
   } else if (req.url === baseUrl && req.method === "POST") {

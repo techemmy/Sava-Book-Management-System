@@ -45,8 +45,8 @@ const getISBNFromUrl = (url) => {
 const urlContainsISBN = (url) => {
   // Regular expression to test for paths with an ISBN number in the URL.
   const bookPathWithISBNRegex = /books\/([A-Za-z0-9]?(-[A-Za-z0-9]?)?)/i;
-  return bookPathWithISBNRegex.test(url)
-}
+  return bookPathWithISBNRegex.test(url);
+};
 
 /**
  * Checks if a given URL contains pagination parameters for the "books" endpoint.
@@ -55,10 +55,9 @@ const urlContainsISBN = (url) => {
  * @returns {boolean} - `true` if the URL contains pagination parameters, otherwise `false`.
  */
 const urlContainsPaginationParams = (url) => {
-  const urlRegex = /^\/books\?page=\d+$/
-  return urlRegex.test(url)
-}
-
+  const urlRegex = /^\/books\?page=\d+$/;
+  return urlRegex.test(url);
+};
 
 /**
  * Gets the data passed in the body of a request.
@@ -94,5 +93,5 @@ module.exports = {
   getISBNFromUrl,
   getRequestBody,
   urlContainsISBN,
-  urlContainsPaginationParams
+  urlContainsPaginationParams,
 };
