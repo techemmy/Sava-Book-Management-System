@@ -3,7 +3,6 @@ require("dotenv").config(); // Load environment variables from .env file
 const server = require("./app");
 const config = require("./config");
 const redisStore = require("./redisStore");
-const logger = require("./logger");
 
 (async () => {
   const redisClient = redisStore.getClient();
